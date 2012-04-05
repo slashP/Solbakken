@@ -1,0 +1,29 @@
+﻿@using Solbakken.Models
+@model List<Bilde>
+@{
+    ViewBag.Title = "Home Page";
+    var counter = 0;
+    var albums = (List<Album>) ViewBag.Album;
+}
+
+<div id="wowslider-container1">
+    <div class="ws_images">
+        <ul>
+            @foreach(var bilde in Model)
+            {
+                <li><img src="/Home/GetImage?id=@(bilde.Id)" alt="@bilde.Beskrivelse" title="@bilde.Beskrivelse" id="wows@(counter++)"/></li>
+            }
+        </ul>
+    </div>
+</div>
+
+<h2>Velg album</h2>
+@foreach(var album in albums)
+{
+    <div class="album">
+        @Html.ActionLink(album.Navn, "Index", "Home", new {albumId = album.Id}, null)
+    </div>
+}
+
+<script src="~/Scripts/wow/wowslider.js"></script>
+<script src="~/Scripts/wow/script.js"></script>

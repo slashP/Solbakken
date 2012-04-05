@@ -1,0 +1,30 @@
+﻿@model Solbakken.Models.Album
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Lag et album</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Album</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Navn)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Navn)
+            @Html.ValidationMessageFor(model => model.Navn)
+        </div>
+
+        <p>
+            <input type="submit" value="Opprett" />
+        </p>
+    </fieldset>
+}

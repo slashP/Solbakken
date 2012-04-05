@@ -1,0 +1,36 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Last opp bilde";
+}
+
+<h2>Last opp bilde</h2>
+@using (Html.BeginForm("LastOpp", "Bilde", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <fieldset>
+
+        <div class="editor-label">
+            Last opp en bildefil eller en zip-fil med mange bilder i (mindre enn 50 MB)
+        </div>
+        <div class="editor-field">
+            <input type="file" name="fileUpload" id="fileUpload" /><br />
+        </div>
+        
+        <div class="editor-label">
+            Velg et album bilde skal legges i
+        </div>
+        <div id="album" class="editor-field">
+            @Html.DropDownList("AlbumId", String.Empty)
+        </div>
+        <div class="editor-label">
+            Skriv en kort beskrivelse av bildet/bildene
+        </div>
+        <div class="editor-field">
+            <input id="beskrivelse" name="beskrivelse" type="text" />
+        </div>
+
+        <p>
+            <input type="submit" value="Last opp" />
+        </p>
+    </fieldset>
+}

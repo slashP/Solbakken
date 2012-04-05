@@ -1,0 +1,29 @@
+﻿@model Solbakken.Models.Album
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Album</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Navn)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Navn)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Opprettet)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Opprettet)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
