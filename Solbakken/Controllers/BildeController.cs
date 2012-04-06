@@ -17,9 +17,11 @@ namespace Solbakken.Controllers
     {
         private readonly DataContext _db = new DataContext();
 
-        public ActionResult LastOpp()
+        public ActionResult LastOpp(string warning, string success)
         {
             ViewBag.AlbumId = new SelectList(_db.Albums, "Id", "Navn");
+            ViewBag.Warning = warning;
+            ViewBag.Success = success;
             return View();
         }
 
@@ -28,13 +30,13 @@ namespace Solbakken.Controllers
         {
             if(albumId == null)
             {
-                ModelState.AddModelError("AlbumId", "Du må velge et album");
-                return RedirectToAction("LastOpp");
+                return RedirectToAction("LastOpp", new {warning = "Du må velge et album"});
             }
             var image = Request.Files.Count > 0 ? Request.Files[0] : null;
+            var imagesUploadedCounter = 0;
             if (image != null)
             {
-                if(image.ContentType == "application/zip")
+                if (image.ContentType == "application/zip" || image.ContentType == "application/octet-stream")
                 {
                     using (var zip1 = ZipFile.Read(image.InputStream))
                     {
@@ -49,6 +51,7 @@ namespace Solbakken.Controllers
                                 var im = Image.FromStream(stream);
                                 var imageFormat = ImageUtil.GetImageFormatFromFileExtension(extension);
                                 var newImage = ImageUtil.ResizeImage(im, new Size(640, 480), imageFormat);
+                                var thumbnail = ImageUtil.ResizeImage(im, new Size(80, 60), imageFormat);
                                 var album = _db.Albums.Find(albumId) ?? _db.Albums.FirstOrDefault();
                                 var user = _db.Users.FirstOrDefault(x => x.Username == User.Identity.Name);
                                 var bilde = new Bilde
@@ -59,8 +62,10 @@ namespace Solbakken.Controllers
                                     BildeStream = ReadFully(newImage),
                                     Filnavn = e.FileName,
                                     LastetOppAvId = user.UserId,
-                                    Navn = e.FileName
+                                    Navn = e.FileName,
+                                    Thumbnail = ReadFully(thumbnail)
                                 };
+                                imagesUploadedCounter++;
                                 _db.Bilder.Add(bilde);
                                 _db.SaveChanges();
                             }
@@ -72,6 +77,7 @@ namespace Solbakken.Controllers
                     var im = Image.FromStream(image.InputStream);
                     var imageFormat = ImageUtil.GetImageFormat(image.ContentType);
                     var newImage = ImageUtil.ResizeImage(im, new Size(640, 480), imageFormat);
+                    var thumbnail = ImageUtil.ResizeImage(im, new Size(100, 75), imageFormat);
                     var album = _db.Albums.Find(albumId) ?? _db.Albums.FirstOrDefault();
                     var user = _db.Users.FirstOrDefault(x => x.Username == User.Identity.Name);
                     var bilde = new Bilde
@@ -82,14 +88,15 @@ namespace Solbakken.Controllers
                         BildeStream = ReadFully(newImage),
                         Filnavn = image.FileName,
                         LastetOppAvId = user.UserId,
-                        Navn = image.FileName
+                        Navn = image.FileName,
+                        Thumbnail = ReadFully(thumbnail)
                     };
+                    imagesUploadedCounter++;
                     _db.Bilder.Add(bilde);
                     _db.SaveChanges();
                 }
-                
             }
-            return RedirectToAction("LastOpp");
+            return RedirectToAction("LastOpp", new {success = string.Format("{0} bilde{1} lastet opp.", imagesUploadedCounter, imagesUploadedCounter != 1 ? "r" : string.Empty)});
         }
 
         public Guid GetUserId()

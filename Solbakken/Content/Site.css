@@ -638,3 +638,11 @@ ul#social li {
             width: auto;
         }
 }
+
+.albums {
+    display: inline-block;
+}
+
+.albumcover {
+    width: 200px;
+}

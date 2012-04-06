@@ -46,7 +46,7 @@ namespace Solbakken.Util
             return b.ToStream(imageFormat);
         }
 
-        public static string[] AllowedImageTypes = new[] {"image/jpeg", "image/png", "image/gif"};
+        public static string[] AllowedImageTypes = new[] { "image/jpeg", "image/png", "image/gif", "image/pjpeg" };
 
         public static ImageFormat GetImageFormatFromFileExtension(string fileExtension)
         {
@@ -67,6 +67,7 @@ namespace Solbakken.Util
             switch (contentType)
             {
                 case "image/jpeg":
+                case "image/pjpeg":
                     return ImageFormat.Jpeg;
                 case "image/png":
                     return ImageFormat.Png;

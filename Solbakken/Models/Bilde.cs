@@ -20,6 +20,7 @@ namespace Solbakken.Models
         public int? AlbumId { get; set; }
         public virtual Album Album { get; set; }
         public byte[] BildeStream { get; set; }
+        public byte[] Thumbnail { get; set; }
         public string Filnavn { get; set; }
         public string Format { get; set; }
     }

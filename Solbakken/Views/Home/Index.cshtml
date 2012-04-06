@@ -4,8 +4,9 @@
     ViewBag.Title = "Home Page";
     var counter = 0;
     var albums = (List<Album>) ViewBag.Album;
+    var thumbnails = (List<Bilde>) ViewBag.Thumbnails;
 }
-
+<link rel="stylesheet" type="text/css" href="~/Content/wow/style.css"/>
 <div id="wowslider-container1">
     <div class="ws_images">
         <ul>
@@ -15,15 +16,34 @@
             }
         </ul>
     </div>
+
+    <div class="ws_bullets">
+        <div>
+            @{var thumbCounter = 0;}
+            @foreach(var bilde in Model)
+            {
+                <a href="#" title="@bilde.Beskrivelse"><img style="height: 100px;" src="/Home/GetThumbnail/?id=@bilde.Id" alt="@bilde.Beskrivelse"/>@(thumbCounter++)</a>
+            }
+        </div>
+    </div>
 </div>
 
-<h2>Velg album</h2>
-@foreach(var album in albums)
-{
-    <div class="album">
-        @Html.ActionLink(album.Navn, "Index", "Home", new {albumId = album.Id}, null)
-    </div>
-}
 
+<div class="page-header">
+    <div class="span3">
+    </div>
+    <h2>Velg album</h2>
+</div>
+<div class="row" style="margin-left: auto; margin-right: auto; text-align: center;">
+    @foreach (var album in albums)
+    {
+        var bilde = thumbnails.FirstOrDefault(x => x.AlbumId == album.Id);
+        if (bilde == null)
+        {
+            continue;
+        }
+        @Html.Partial("_AlbumCover", bilde)
+    }
+</div>
 <script src="~/Scripts/wow/wowslider.js"></script>
 <script src="~/Scripts/wow/script.js"></script>

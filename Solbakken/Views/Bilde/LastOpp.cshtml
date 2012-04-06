@@ -2,6 +2,21 @@
 
 @{
     ViewBag.Title = "Last opp bilde";
+    var warning = (string)ViewBag.Warning;
+    var success = (string)ViewBag.Success;
+}
+@if(!string.IsNullOrEmpty(warning))
+{
+    <div class="alert alert-error">
+        @warning
+    </div>
+}
+
+@if(!string.IsNullOrEmpty(success))
+{
+    <div class="alert alert-success">
+        @success
+    </div>
 }
 
 <h2>Last opp bilde</h2>

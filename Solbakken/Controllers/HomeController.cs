@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CodeFirstMembershipSharp;
+using Solbakken.Models;
 using Solbakken.Util;
 
 namespace Solbakken.Controllers
@@ -16,7 +17,10 @@ namespace Solbakken.Controllers
 
         public ActionResult Index(int? albumId)
         {
-            ViewBag.Album = _db.Albums.ToList();
+            var albumer = _db.Albums.ToList();
+            ViewBag.Album = albumer;
+            var thumbnails = albumer.Select(album => _db.Bilder.FirstOrDefault(x => x.AlbumId == album.Id)).Where(pic => pic != null).ToList();
+            ViewBag.Thumbnails = thumbnails;
             if(albumId == null)
             {
                 return View(_db.Bilder.Take(10).ToList());
@@ -31,17 +35,14 @@ namespace Solbakken.Controllers
             return File(bilde.BildeStream, ImageUtil.GetImageContentType(bilde.Format));
         }
 
-        public ActionResult About()
+        public ActionResult GetThumbnail(int id)
         {
-            ViewBag.Message = "Your quintessential app description page.";
-
-            return View();
+            var thumbnail = _db.Bilder.Find(id);
+            return File(thumbnail.Thumbnail, ImageUtil.GetImageContentType(thumbnail.Format));
         }
-
-        public ActionResult Contact()
+       
+        public ActionResult Test()
         {
-            ViewBag.Message = "Your quintessential contact page.";
-
             return View();
         }
     }
