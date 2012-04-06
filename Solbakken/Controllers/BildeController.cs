@@ -12,6 +12,7 @@ using Solbakken.Util;
 
 namespace Solbakken.Controllers
 {
+    [Authorize]
     public class BildeController : Controller
     {
         private readonly DataContext _db = new DataContext();
@@ -23,8 +24,13 @@ namespace Solbakken.Controllers
         }
 
         [HttpPost]
-        public ActionResult LastOpp(HttpPostedFileBase fileBase, int albumId, string beskrivelse)
+        public ActionResult LastOpp(HttpPostedFileBase fileBase, int? albumId, string beskrivelse)
         {
+            if(albumId == null)
+            {
+                ModelState.AddModelError("AlbumId", "Du må velge et album");
+                return RedirectToAction("LastOpp");
+            }
             var image = Request.Files.Count > 0 ? Request.Files[0] : null;
             if (image != null)
             {
@@ -52,7 +58,7 @@ namespace Solbakken.Controllers
                                     Format = imageFormat.ToString(),
                                     BildeStream = ReadFully(newImage),
                                     Filnavn = e.FileName,
-                                    LastetOppAv = user,
+                                    LastetOppAvId = user.UserId,
                                     Navn = e.FileName
                                 };
                                 _db.Bilder.Add(bilde);
@@ -75,7 +81,7 @@ namespace Solbakken.Controllers
                         Format = imageFormat.ToString(),
                         BildeStream = ReadFully(newImage),
                         Filnavn = image.FileName,
-                        LastetOppAv = user,
+                        LastetOppAvId = user.UserId,
                         Navn = image.FileName
                     };
                     _db.Bilder.Add(bilde);
@@ -84,6 +90,20 @@ namespace Solbakken.Controllers
                 
             }
             return RedirectToAction("LastOpp");
+        }
+
+        public Guid GetUserId()
+        {
+            var user = _db.Users.FirstOrDefault(x => x.Username == User.Identity.Name);
+            var userid = user != null ? user.UserId : Guid.NewGuid();
+            return userid;
+        }
+
+        public ActionResult Slett()
+        {
+            var userId = GetUserId();
+            var bilder = _db.Bilder.Where(x => x.LastetOppAvId == userId).ToList();
+            return View(bilder);
         }
 
         public static byte[] ReadFully(Stream input)
@@ -98,6 +118,18 @@ namespace Solbakken.Controllers
                 }
                 return ms.ToArray();
             }
+        }
+
+        public ActionResult SlettBekreftet(int id)
+        {
+            var bilde = _db.Bilder.Find(id);
+            var userId = GetUserId();
+            if (bilde.LastetOppAvId == userId)
+            {
+                _db.Bilder.Remove(bilde);
+                _db.SaveChanges();
+            }
+            return RedirectToAction("Slett");
         }
     }
 }

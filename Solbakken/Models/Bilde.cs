@@ -14,8 +14,10 @@ namespace Solbakken.Models
         public int Id { get; set; }
         public string Navn { get; set; }
         public string Beskrivelse { get; set; }
-        public User LastetOppAv { get; set; }
-        public int AlbumId { get; set; }
+        public Guid LastetOppAvId { get; set; }
+        public virtual User LastetOppAv { get; set; }
+        [Required(ErrorMessage = "Du må velge et album. Opprett et først hvis du ikke finner ett.")]
+        public int? AlbumId { get; set; }
         public virtual Album Album { get; set; }
         public byte[] BildeStream { get; set; }
         public string Filnavn { get; set; }

@@ -1,59 +1,66 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/f:Web.config" caret="0" fromTop="0" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Membership/f:CodeFirstMembershipProvider.cs" caret="2602" fromTop="11" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:AlbumController.cs" caret="347" fromTop="0" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Album/f:Index.cshtml" caret="0" fromTop="0" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Content/d:wow/f:style.css" caret="1868" fromTop="12" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Models/f:Bilde.cs" caret="279" fromTop="7" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Entities/f:User.cs" caret="249" fromTop="8" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Album/f:Index.cshtml" caret="847" fromTop="20" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Home/f:Index.cshtml" caret="650" fromTop="11" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/f:Global.asax.cs" caret="1510" fromTop="12" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:HomeController.cs" caret="521" fromTop="0" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Bilde/f:Slett.cshtml" caret="697" fromTop="11" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/f:Web.config" caret="607" fromTop="11" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Shared/f:_Layout.cshtml" caret="1606" fromTop="9" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Content/f:Site.css" caret="301" fromTop="14" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Album/f:Create.cshtml" caret="740" fromTop="11" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Shared/f:_LoginPartial.cshtml" caret="53" fromTop="2" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:AlbumController.cs" caret="519" fromTop="15" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Models/f:Album.cs" caret="298" fromTop="11" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Bilde/f:LastOpp.cshtml" caret="575" fromTop="16" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Scripts/d:wow/f:script.js" caret="1728" fromTop="20" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/f:_ViewStart.cshtml" caret="8" fromTop="1" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Context/f:DataContext.cs" caret="646" fromTop="18" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Util/f:ImageUtil.cs" caret="1530" fromTop="11" />
     <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Album/f:Details.cshtml" caret="0" fromTop="0" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Album/f:Create.cshtml" caret="0" fromTop="0" />
     <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Album/f:Edit.cshtml" caret="0" fromTop="0" />
     <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Album/f:Delete.cshtml" caret="0" fromTop="0" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Migrations/f:Configuration.cs" caret="1021" fromTop="27" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Models/f:Album.cs" caret="281" fromTop="9" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Models/f:Bilde.cs" caret="443" fromTop="9" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Shared/f:_Layout.cshtml" caret="1434" fromTop="17" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Bilde/f:LastOpp.cshtml" caret="523" fromTop="21" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:BildeController.cs" caret="812" fromTop="12" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Util/f:ImageUtil.cs" caret="1522" fromTop="11" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:HomeController.cs" caret="374" fromTop="11" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Migrations/f:Configuration.cs" caret="369" fromTop="7" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Context/f:DataContextInitializer.cs" caret="342" fromTop="13" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Membership/f:CodeFirstMembershipProvider.cs" caret="2602" fromTop="11" />
     <File id="DB942182-54D6-405C-8500-911047CF0DB8/f:Membership.config" caret="0" fromTop="0" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/f:Web.config" caret="4683" fromTop="13" />
     <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Account/f:Register.cshtml" caret="275" fromTop="11" />
     <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Models/f:AccountModels.cs" caret="1338" fromTop="5" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Content/d:wow/f:style.css" caret="0" fromTop="0" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Home/f:Index.cshtml" caret="1561" fromTop="21" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:AccountController.cs" caret="4313" fromTop="17" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:BildeController.cs" caret="3826" fromTop="12" />
   </RecentFiles>
   <RecentEdits>
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Home/f:Index.cshtml" caret="0" fromTop="0" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Home/f:Index.cshtml" caret="39" fromTop="9" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Home/f:Index.cshtml" caret="1469" fromTop="22" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Home/f:Index.cshtml" caret="1420" fromTop="17" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Home/f:Index.cshtml" caret="43" fromTop="12" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:AccountController.cs" caret="3289" fromTop="12" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:AccountController.cs" caret="4313" fromTop="17" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/f:Web.config" caret="4683" fromTop="7" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/f:Web.config" caret="4683" fromTop="19" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/f:Web.config" caret="4683" fromTop="12" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/f:Web.config" caret="4683" fromTop="17" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/f:Web.config" caret="4683" fromTop="12" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/f:Web.config" caret="4683" fromTop="7" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Home/f:Index.cshtml" caret="669" fromTop="18" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Home/f:Index.cshtml" caret="933" fromTop="8" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Home/f:Index.cshtml" caret="43" fromTop="4" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Home/f:Index.cshtml" caret="1570" fromTop="21" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Util/f:ImageUtil.cs" caret="1848" fromTop="22" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Util/f:ImageUtil.cs" caret="515" fromTop="8" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:BildeController.cs" caret="887" fromTop="39" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:BildeController.cs" caret="316" fromTop="9" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Bilde/f:LastOpp.cshtml" caret="131" fromTop="7" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Bilde/f:LastOpp.cshtml" caret="280" fromTop="12" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Bilde/f:LastOpp.cshtml" caret="488" fromTop="19" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Shared/f:_Layout.cshtml" caret="1434" fromTop="17" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:BildeController.cs" caret="821" fromTop="12" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Models/f:Album.cs" caret="268" fromTop="9" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Models/f:Bilde.cs" caret="461" fromTop="9" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Migrations/f:Configuration.cs" caret="1098" fromTop="27" />
-    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:AlbumController.cs" caret="347" fromTop="8" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:HomeController.cs" caret="569" fromTop="15" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Home/f:Index.cshtml" caret="649" fromTop="17" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Shared/f:_Layout.cshtml" caret="966" fromTop="11" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Shared/f:_LoginPartial.cshtml" caret="511" fromTop="8" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Album/f:Create.cshtml" caret="89" fromTop="3" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Album/f:Create.cshtml" caret="740" fromTop="11" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Bilde/f:LastOpp.cshtml" caret="338" fromTop="3" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Bilde/f:LastOpp.cshtml" caret="854" fromTop="18" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Content/f:Site.css" caret="301" fromTop="14" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Shared/f:_LoginPartial.cshtml" caret="53" fromTop="2" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Shared/f:_Layout.cshtml" caret="2116" fromTop="14" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Bilde/f:LastOpp.cshtml" caret="575" fromTop="16" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:BildeController.cs" caret="4462" fromTop="20" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Bilde/f:Slett.cshtml" caret="341" fromTop="17" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Bilde/f:Slett.cshtml" caret="19" fromTop="0" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Bilde/f:Slett.cshtml" caret="313" fromTop="16" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Bilde/f:Slett.cshtml" caret="684" fromTop="22" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:BildeController.cs" caret="5343" fromTop="16" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Shared/f:_Layout.cshtml" caret="1590" fromTop="3" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:BildeController.cs" caret="304" fromTop="11" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:BildeController.cs" caret="5298" fromTop="7" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:BildeController.cs" caret="4095" fromTop="13" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:BildeController.cs" caret="5298" fromTop="16" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:BildeController.cs" caret="4276" fromTop="14" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:BildeController.cs" caret="5069" fromTop="5" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Views/d:Bilde/f:Slett.cshtml" caret="697" fromTop="11" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Models/f:Bilde.cs" caret="428" fromTop="11" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/f:Global.asax.cs" caret="1580" fromTop="13" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:BildeController.cs" caret="3586" fromTop="13" />
+    <File id="DB942182-54D6-405C-8500-911047CF0DB8/d:Controllers/f:BildeController.cs" caret="2468" fromTop="12" />
   </RecentEdits>
 </RecentFiles>

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Solbakken.Models.Bilde>
+
+@{
+    ViewBag.Title = "Slett bilder";
+}
+
+<h2>Slett bilder</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Album.Navn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Filnavn)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var bilde in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => bilde.Album.Navn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => bilde.Filnavn)
+        </td>
+        <td>
+            @Html.ActionLink("Slett", "SlettBekreftet", new { id = bilde.Id })
+        </td>
+    </tr>
+}
+</table>
