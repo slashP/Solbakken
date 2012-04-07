@@ -82,7 +82,7 @@
                 numberOfItems = input.files.length;
             }
             for (var x = 0; x < input.files.length; x++) {
-                setTimeout(saveImage, 100 * x, input.files[x], selectedValue);
+                setTimeout(saveImage, 4000 * x, input.files[x], selectedValue);
             }
         }
     }
@@ -97,7 +97,8 @@
             type: 'POST',
             success: function (results) {
                 $('<div class="alert alert-success">' + results + '</div>').hide().prependTo("#fileList").fadeIn("slow");
-                $("#progressbar").progressbar({ value: ++progress/numberOfItems*4000 });
+                progress++;
+                $("#progressbar").progressbar({ value: progress / numberOfItems * 100 });
             }
         });
     };
