@@ -5,11 +5,57 @@
 }
 
 <div class="hero-unit">
-  <h1>Heading</h1>
-  <p>Tagline</p>
-  <p>
-    <a class="btn btn-primary btn-large">
-      Learn more
-    </a>
-  </p>
+    <h1>Heading</h1>
+    <p>Tagline</p>
+    <p>
+        <a class="btn btn-primary btn-large">
+            Learn more
+        </a>
+    </p>
 </div>
+
+<div id="fileList"></div>
+
+<input id="filesToUpload" type="file" multiple="multiple"/>
+<input type="button" onclick="showFiles()" value="trykk"/>
+
+<script>
+
+    function test2() {
+        $.each($('#filesToUpload')[0].files, function (i, file) {
+            var data = new FormData();
+            data.append('', file);
+            $.ajax({
+                url: '/Home/UploadTest?filename=' + file.name,
+                data: data,
+                async: false,
+                cache: false,
+                contentType: 'multipart/form-data',
+                processData: false,
+                type: 'POST',
+                success: function (results) {
+                    $("#fileList").append(results);
+                }
+            });
+        });
+    }
+
+    function showFiles() {
+        var input = document.getElementById('filesToUpload');
+        for (var x = 0; x < input.files.length; x++) {
+            $.ajax({
+                url: '/Home/UploadTest?filename=' + input.files[x].name,
+                data: input.files[x],
+                cache: false,
+                async: false,
+                contentType: 'multipart/form-data',
+                processData: false,
+                type: 'POST',
+                success: function (results) {
+                    $("#fileList").append(results);
+                }
+            });
+        }
+    }
+    
+</script>

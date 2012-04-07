@@ -99,6 +99,34 @@ namespace Solbakken.Controllers
             return RedirectToAction("LastOpp", new {success = string.Format("{0} bilde{1} lastet opp.", imagesUploadedCounter, imagesUploadedCounter != 1 ? "r" : string.Empty)});
         }
 
+        public JsonResult UploadMultiple(string filename, int albumId)
+        {
+            var count = Request.InputStream.Length;
+            var pic = new byte[count];
+            Request.InputStream.Read(pic, 0, (int)count);
+            var im = Image.FromStream(new MemoryStream(pic));
+            var extension = filename.Split('.').Last();
+            var imageFormat = ImageUtil.GetImageFormatFromFileExtension(extension);
+            var newImage = ImageUtil.ResizeImage(im, new Size(640, 480), imageFormat);
+            var thumbnail = ImageUtil.ResizeImage(im, new Size(80, 60), imageFormat);
+            var album = _db.Albums.Find(albumId) ?? _db.Albums.FirstOrDefault();
+            var user = _db.Users.FirstOrDefault(x => x.Username == User.Identity.Name);
+            var bilde = new Bilde
+            {
+                AlbumId = album.Id,
+                Beskrivelse = "",
+                Format = imageFormat.ToString(),
+                BildeStream = ReadFully(newImage),
+                Filnavn = filename,
+                LastetOppAvId = user.UserId,
+                Navn = filename,
+                Thumbnail = ReadFully(thumbnail)
+            };
+            _db.Bilder.Add(bilde);
+            _db.SaveChanges();
+            return Json(string.Format("La til {0}", filename));
+        }
+
         public Guid GetUserId()
         {
             var user = _db.Users.FirstOrDefault(x => x.Username == User.Identity.Name);

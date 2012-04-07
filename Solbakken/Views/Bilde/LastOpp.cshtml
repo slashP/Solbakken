@@ -49,3 +49,38 @@
         </p>
     </fieldset>
 }
+
+<input id="filesToUpload" type="file" multiple="multiple"/>
+<input type="button" onclick="showFiles()" value="Last opp flere bilder samtidig"/>
+<div id="fileList"></div>
+
+<script>
+
+    function showFiles() {
+        var input = document.getElementById('filesToUpload');
+        var selectedValue = $("#AlbumId :selected").val();
+        if(selectedValue == "") {
+            $("#fileList").html('<div class="alert alert-error">Du må velge et album</div>');
+        }
+        else {
+            for (var x = 0; x < input.files.length; x++) {
+                setTimeout(saveImage, 5000 * x, input.files[x], selectedValue);
+            }
+        }
+    }
+
+    var saveImage = function(file, albumId) {
+        $.ajax({
+            url: '/Bilde/UploadMultiple?filename=' + file.name + "&albumId=" + albumId,
+            data: file,
+            cache: false,
+            contentType: 'multipart/form-data',
+            processData: false,
+            type: 'POST',
+            success: function (results) {
+                $("#fileList").prepend('<div class="alert alert-success">' + results + '</div>');
+            }
+        });
+    }
+    
+</script>
