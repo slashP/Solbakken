@@ -50,26 +50,43 @@
     </fieldset>
 }
 
+<hr />
+
+<h2>Last opp flere bilder</h2>
+
 <input id="filesToUpload" type="file" multiple="multiple"/>
-<input type="button" onclick="showFiles()" value="Last opp flere bilder samtidig"/>
+<br />
+<div id="albumer"></div>
+
+<input class="superknapp" type="button" onclick="showFiles()" value="Last opp flere bilder samtidig"/>
+<br />
+<div id="progressbar" style="margin-bottom: 20px;"></div>
 <div id="fileList"></div>
 
 <script>
 
+    $(document).ready(function () {
+        $('#AlbumId').clone().appendTo('#albumer');
+        $("#albumer").first().attr("id", "multiAlbum");
+    });
+
     function showFiles() {
         var input = document.getElementById('filesToUpload');
-        var selectedValue = $("#AlbumId :selected").val();
+        var selectedValue = $("#multiAlbum :selected").val();
         if(selectedValue == "") {
             $("#fileList").html('<div class="alert alert-error">Du må velge et album</div>');
         }
         else {
+            if(input.files.length > 0) {
+                numberOfItems = input.files.length;
+            }
             for (var x = 0; x < input.files.length; x++) {
-                setTimeout(saveImage, 5000 * x, input.files[x], selectedValue);
+                setTimeout(saveImage, 100 * x, input.files[x], selectedValue);
             }
         }
     }
 
-    var saveImage = function(file, albumId) {
+    var saveImage = function (file, albumId) {
         $.ajax({
             url: '/Bilde/UploadMultiple?filename=' + file.name + "&albumId=" + albumId,
             data: file,
@@ -78,9 +95,13 @@
             processData: false,
             type: 'POST',
             success: function (results) {
-                $("#fileList").prepend('<div class="alert alert-success">' + results + '</div>');
+                $('<div class="alert alert-success">' + results + '</div>').hide().prependTo("#fileList").fadeIn("slow");
+                $("#progressbar").progressbar({ value: ++progress/numberOfItems*4000 });
             }
         });
-    }
+    };
+
+    var progress = 0;
+    var numberOfItems = 1;
     
 </script>
