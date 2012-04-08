@@ -86,7 +86,10 @@
             $("#multibutton").attr('disabled', 'disabled');
             for (var x = 0; x < input.files.length; x++) {
                 var currentFile = input.files[x];
+                console.log(currentFile.name);
+                console.log(currentFile.name.endsWith(".jpg"));
                 if (currentFile.name.endsWith(".jpg") || currentFile.name.endsWith(".jpeg") || currentFile.name.endsWith(".png") || currentFile.name.endsWith(".gif")) {
+                    console.log("new file");
                     files.push(currentFile);                    
                 }
             }
@@ -140,6 +143,6 @@
         files = [];
     }
     String.prototype.endsWith = function (suffix) {
-        return this.indexOf(suffix, this.length - suffix.length) !== -1;
+        return this.toLowerCase().indexOf(suffix.toLowerCase(), this.length - suffix.length) !== -1;
     };
 </script>
