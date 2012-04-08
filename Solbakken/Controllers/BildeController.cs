@@ -104,26 +104,33 @@ namespace Solbakken.Controllers
             var count = Request.InputStream.Length;
             var pic = new byte[count];
             Request.InputStream.Read(pic, 0, (int)count);
-            var im = Image.FromStream(new MemoryStream(pic));
-            var extension = filename.Split('.').Last();
-            var imageFormat = ImageUtil.GetImageFormatFromFileExtension(extension);
-            var newImage = ImageUtil.ResizeImage(im, new Size(640, 480), imageFormat);
-            var thumbnail = ImageUtil.ResizeImage(im, new Size(80, 60), imageFormat);
-            var album = _db.Albums.Find(albumId) ?? _db.Albums.FirstOrDefault();
-            var user = _db.Users.FirstOrDefault(x => x.Username == User.Identity.Name);
-            var bilde = new Bilde
+            try
             {
-                AlbumId = album.Id,
-                Beskrivelse = "",
-                Format = imageFormat.ToString(),
-                BildeStream = ReadFully(newImage),
-                Filnavn = filename,
-                LastetOppAvId = user.UserId,
-                Navn = filename,
-                Thumbnail = ReadFully(thumbnail)
-            };
-            _db.Bilder.Add(bilde);
-            _db.SaveChanges();
+                var im = Image.FromStream(new MemoryStream(pic));
+                var extension = filename.Split('.').Last();
+                var imageFormat = ImageUtil.GetImageFormatFromFileExtension(extension);
+                var newImage = ImageUtil.ResizeImage(im, new Size(640, 480), imageFormat);
+                var thumbnail = ImageUtil.ResizeImage(im, new Size(80, 60), imageFormat);
+                var album = _db.Albums.Find(albumId) ?? _db.Albums.FirstOrDefault();
+                var user = _db.Users.FirstOrDefault(x => x.Username == User.Identity.Name);
+                var bilde = new Bilde
+                {
+                    AlbumId = album.Id,
+                    Beskrivelse = "",
+                    Format = imageFormat.ToString(),
+                    BildeStream = ReadFully(newImage),
+                    Filnavn = filename,
+                    LastetOppAvId = user.UserId,
+                    Navn = filename,
+                    Thumbnail = ReadFully(thumbnail)
+                };
+                _db.Bilder.Add(bilde);
+                _db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new FormatException("Wrong format on picture");
+            }
             return Json(string.Format("La til {0}", filename));
         }
 

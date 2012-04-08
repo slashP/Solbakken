@@ -58,13 +58,15 @@
 <br />
 <div id="albumer"></div>
 
-<input class="superknapp" type="button" onclick="showFiles()" value="Last opp flere bilder samtidig"/>
+<input class="superknapp" id="multibutton" type="button" onclick="showFiles()" value="Last opp flere bilder samtidig"/>
 <br />
 <div id="progressbar" style="margin-bottom: 20px;"></div>
 <div id="fileList"></div>
 
 <script>
-
+    var progress = 0;
+    var numberOfItems = 1;
+    var files = [];
     $(document).ready(function () {
         $('#AlbumId').clone().appendTo('#albumer');
         $("#albumer").first().attr("id", "multiAlbum");
@@ -72,22 +74,40 @@
     });
 
     function showFiles() {
+        progress = 0;
+        files = [];
         var input = document.getElementById('filesToUpload');
         var selectedValue = $("#multiAlbum :selected").val();
         if(selectedValue == "") {
             $("#fileList").html('<div class="alert alert-error">Du må velge et album</div>');
         }
         else {
-            if(input.files.length > 0) {
-                numberOfItems = input.files.length;
-            }
+            
+            $("#multibutton").attr('disabled', 'disabled');
             for (var x = 0; x < input.files.length; x++) {
-                setTimeout(saveImage, 4000 * x, input.files[x], selectedValue);
+                var currentFile = input.files[x];
+                if (currentFile.name.endsWith(".jpg") || currentFile.name.endsWith(".jpeg") || currentFile.name.endsWith(".png") || currentFile.name.endsWith(".gif")) {
+                    files.push(currentFile);                    
+                }
             }
+            if (input.files.length > 0) {
+                numberOfItems = files.length;
+            }
+            startSavingImages(selectedValue);
         }
     }
 
-    var saveImage = function (file, albumId) {
+    function startSavingImages(albumId) {
+        if(files.length !== 0) {
+            var file = files.splice(0, 1);
+            saveImage(file[0], albumId);
+        }
+        else if (files.length === 0) {
+            setUserDefaults();
+        }
+    }
+
+    function saveImage(file, albumId) {
         $.ajax({
             url: '/Bilde/UploadMultiple?filename=' + file.name + "&albumId=" + albumId,
             data: file,
@@ -97,13 +117,29 @@
             type: 'POST',
             success: function (results) {
                 $('<div class="alert alert-success">' + results + '</div>').hide().prependTo("#fileList").fadeIn("slow");
-                progress++;
-                $("#progressbar").progressbar({ value: progress / numberOfItems * 100 });
+                saveNextImage(albumId);
+            },
+            error: function () {
+                $('<div class="alert alert-error">Noe gikk galt. Et bilde ble ikke lagt til.</div>').hide().prependTo("#fileList").fadeIn("slow");
+                saveNextImage(albumId);
             }
         });
     };
-
-    var progress = 0;
-    var numberOfItems = 1;
     
+    function saveNextImage(albumId) {
+        progress++;
+        $("#progressbar").progressbar({ value: progress / numberOfItems * 100 });
+        startSavingImages(albumId);
+    }
+    function setUserDefaults() {
+        $("#filesToUpload").replaceWith('<input id="filesToUpload" type="file" multiple="multiple"/>');
+        $('<div class="alert alert-success">' + numberOfItems + ' bilder lastet opp.</div>').hide().prependTo("#fileList").fadeIn("slow");
+        $("#multibutton").removeAttr('disabled');
+        progress = 0;
+        numberOfItems = 1;
+        files = [];
+    }
+    String.prototype.endsWith = function (suffix) {
+        return this.indexOf(suffix, this.length - suffix.length) !== -1;
+    };
 </script>
