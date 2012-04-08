@@ -86,10 +86,7 @@
             $("#multibutton").attr('disabled', 'disabled');
             for (var x = 0; x < input.files.length; x++) {
                 var currentFile = input.files[x];
-                console.log(currentFile.name);
-                console.log(currentFile.name.endsWith(".jpg"));
                 if (currentFile.name.endsWith(".jpg") || currentFile.name.endsWith(".jpeg") || currentFile.name.endsWith(".png") || currentFile.name.endsWith(".gif")) {
-                    console.log("new file");
                     files.push(currentFile);                    
                 }
             }
@@ -119,7 +116,11 @@
             processData: false,
             type: 'POST',
             success: function (results) {
-                $('<div class="alert alert-success">' + results + '</div>').hide().prependTo("#fileList").fadeIn("slow");
+                var toRemove = $('.imageAddedMessage').eq(2);
+                if (toRemove !== undefined) {
+                    toRemove.remove();
+                }
+                $('<div class="alert alert-success imageAddedMessage">' + results + '</div>').hide().prependTo("#fileList").fadeIn("slow");
                 saveNextImage(albumId);
             },
             error: function () {
@@ -135,6 +136,7 @@
         startSavingImages(albumId);
     }
     function setUserDefaults() {
+        $("#fileList").empty();
         $("#filesToUpload").replaceWith('<input id="filesToUpload" type="file" multiple="multiple"/>');
         $('<div class="alert alert-success">' + numberOfItems + ' bilder lastet opp.</div>').hide().prependTo("#fileList").fadeIn("slow");
         $("#multibutton").removeAttr('disabled');
@@ -145,4 +147,16 @@
     String.prototype.endsWith = function (suffix) {
         return this.toLowerCase().indexOf(suffix.toLowerCase(), this.length - suffix.length) !== -1;
     };
+
+    (function ($) {
+        //function that gets a range of dom elements against a jQuery selector
+        //returns an array of dom elements
+        $.fn.getRange = function (start, end) {
+            var elems = [];
+            for (var i = start; i <= end; i++) {
+                elems.push(this.get(i));
+            }
+            return elems;
+        };
+    })(jQuery);
 </script>
