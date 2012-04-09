@@ -1,6 +1,6 @@
 ﻿@model Solbakken.Models.Bilde
 
-<div class="span3 well" style="text-align: center;">
+<div class="span3 well albumLinks" style="text-align: center;">
     <a href="/Home/Album/?albumId=@(Model.AlbumId)">
         <img src="/Home/GetThumbnail?id=@(Model.Id)" alt="@Model.Beskrivelse" title="@Model.Beskrivelse" style="vertical-align: middle; horiz-align: center; height: 90px;"/>
         <br />

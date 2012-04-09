@@ -13,7 +13,7 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 <div class="span6">
-    @using (Html.BeginForm((string)ViewBag.FormAction, "Account")) {
+    @using (Html.BeginForm("LogOn", "Account", FormMethod.Post)) {
         @Html.ValidationSummary(true, "Klarte ikke å logge inn. Prøv å rette feilene og logg inn igjen.")
 
         <fieldset>
