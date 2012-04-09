@@ -4,6 +4,7 @@
     ViewBag.Title = "Last opp bilde";
     var warning = (string)ViewBag.Warning;
     var success = (string)ViewBag.Success;
+    var browser = Request.Browser;
 }
 @if(!string.IsNullOrEmpty(warning))
 {
@@ -18,47 +19,31 @@
         @success
     </div>
 }
+<h2>Last opp flere bilder</h2>
 
-<h2>Last opp bilde</h2>
-@using (Html.BeginForm("LastOpp", "Bilde", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <fieldset>
-
+<input id="filesToUpload" type="file" multiple="multiple" accept="image/*"/>
+<br />
+<div class="row">
+    <div class="span3">
         <div class="editor-label">
-            Last opp en bildefil eller en zip-fil med mange bilder i (mindre enn 50 MB)
-        </div>
-        <div class="editor-field">
-            <input type="file" name="fileUpload" id="fileUpload" /><br />
-        </div>
-        
-        <div class="editor-label">
-            Velg et album bildet/bildene skal legges i.
+            Velg et album bildet skal legges i.
         </div>
         <div id="album" class="editor-field">
             @Html.DropDownList("AlbumId", "Velg et album")
         </div>
-        <div class="editor-label">
-            Skriv en kort beskrivelse av bildet/bildene
-        </div>
-        <div class="editor-field">
-            <input id="beskrivelse" name="beskrivelse" type="text" />
-        </div>
+    </div>
+    <div class="span4 well">
+        Finner du ikke et passende album? Lag et nytt @Html.ActionLink("her", "Create", "Album")
+    </div>
+</div>
+<div class="editor-label">
+    Skriv en kort beskrivelse av bildet
+</div>
+<div class="editor-field">
+    <input id="beskrivelse" name="beskrivelse" type="text" />
+</div>
 
-        <p>
-            <input type="submit" value="Last opp" />
-        </p>
-    </fieldset>
-}
-
-<hr />
-
-<h2>Last opp flere bilder</h2>
-
-<input id="filesToUpload" type="file" multiple="multiple"/>
-<br />
-<div id="albumer"></div>
-
-<input class="superknapp" id="multibutton" type="button" onclick="showFiles()" value="Last opp flere bilder samtidig"/>
+<input class="superknapp" id="multibutton" type="button" onclick="showFiles()" value="Last opp alle bildene"/>
 <br />
 <div id="progressbar" style="margin-bottom: 20px;"></div>
 <div id="fileList"></div>
@@ -77,7 +62,7 @@
         progress = 0;
         files = [];
         var input = document.getElementById('filesToUpload');
-        var selectedValue = $("#multiAlbum :selected").val();
+        var selectedValue = $("#AlbumId :selected").val();
         if(selectedValue == "") {
             $("#fileList").html('<div class="alert alert-error">Du må velge et album</div>');
         }
@@ -109,7 +94,7 @@
 
     function saveImage(file, albumId) {
         $.ajax({
-            url: '/Bilde/UploadMultiple?filename=' + file.name + "&albumId=" + albumId,
+            url: '/Bilde/UploadMultiple?filename=' + file.name + "&albumId=" + albumId + "&beskrivelse=" + $("#beskrivelse").val(),
             data: file,
             cache: false,
             contentType: 'multipart/form-data',

@@ -6,7 +6,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CodeFirstMembershipSharp;
-using Ionic.Zip;
 using Solbakken.Models;
 using Solbakken.Util;
 
@@ -16,13 +15,13 @@ namespace Solbakken.Controllers
     public class BildeController : Controller
     {
         private readonly DataContext _db = new DataContext();
-
+        private readonly List<string> _incompatibleBrowsers = new List<string>{"Opera", "IE"};
         public ActionResult LastOpp(string warning, string success)
         {
             ViewBag.AlbumId = new SelectList(_db.Albums, "Id", "Navn");
             ViewBag.Warning = warning;
             ViewBag.Success = success;
-            return View();
+            return _incompatibleBrowsers.Contains(Request.Browser.Browser) ? View("LastOppEnkel") : View();
         }
 
         [HttpPost]
@@ -36,43 +35,7 @@ namespace Solbakken.Controllers
             var imagesUploadedCounter = 0;
             if (image != null)
             {
-                if (image.ContentType == "application/zip" || image.ContentType == "application/octet-stream")
-                {
-                    using (var zip1 = ZipFile.Read(image.InputStream))
-                    {
-                        // here, we extract every entry, but we could extract conditionally
-                        // based on entry name, size, date, checkbox status, etc.  
-                        foreach (var e in zip1)
-                        {
-                            using(var stream = new MemoryStream())
-                            {
-                                e.Extract(stream);
-                                var extension = e.FileName.Split('.').Last();
-                                var im = Image.FromStream(stream);
-                                var imageFormat = ImageUtil.GetImageFormatFromFileExtension(extension);
-                                var newImage = ImageUtil.ResizeImage(im, new Size(640, 480), imageFormat);
-                                var thumbnail = ImageUtil.ResizeImage(im, new Size(80, 60), imageFormat);
-                                var album = _db.Albums.Find(albumId) ?? _db.Albums.FirstOrDefault();
-                                var user = _db.Users.FirstOrDefault(x => x.Username == User.Identity.Name);
-                                var bilde = new Bilde
-                                {
-                                    AlbumId = album.Id,
-                                    Beskrivelse = beskrivelse,
-                                    Format = imageFormat.ToString(),
-                                    BildeStream = ReadFully(newImage),
-                                    Filnavn = e.FileName,
-                                    LastetOppAvId = user.UserId,
-                                    Navn = e.FileName,
-                                    Thumbnail = ReadFully(thumbnail)
-                                };
-                                imagesUploadedCounter++;
-                                _db.Bilder.Add(bilde);
-                                _db.SaveChanges();
-                            }
-                        }
-                    }
-                }
-                else if(ImageUtil.AllowedImageTypes.Contains(image.ContentType))
+                if(ImageUtil.AllowedImageTypes.Contains(image.ContentType))
                 {
                     var im = Image.FromStream(image.InputStream);
                     var imageFormat = ImageUtil.GetImageFormat(image.ContentType);
@@ -99,7 +62,7 @@ namespace Solbakken.Controllers
             return RedirectToAction("LastOpp", new {success = string.Format("{0} bilde{1} lastet opp.", imagesUploadedCounter, imagesUploadedCounter != 1 ? "r" : string.Empty)});
         }
 
-        public JsonResult UploadMultiple(string filename, int albumId)
+        public JsonResult UploadMultiple(string filename, int albumId, string beskrivelse)
         {
             var count = Request.InputStream.Length;
             var pic = new byte[count];
@@ -116,7 +79,7 @@ namespace Solbakken.Controllers
                 var bilde = new Bilde
                 {
                     AlbumId = album.Id,
-                    Beskrivelse = "",
+                    Beskrivelse = beskrivelse,
                     Format = imageFormat.ToString(),
                     BildeStream = ReadFully(newImage),
                     Filnavn = filename,

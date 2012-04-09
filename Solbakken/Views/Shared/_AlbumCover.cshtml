@@ -1,10 +1,10 @@
 ﻿@model Solbakken.Models.Bilde
 
 <div class="span3 well" style="text-align: center;">
-    <a href="/Home/Index/?albumId=@(Model.AlbumId)">
+    <a href="/Home/Album/?albumId=@(Model.AlbumId)">
         <img src="/Home/GetThumbnail?id=@(Model.Id)" alt="@Model.Beskrivelse" title="@Model.Beskrivelse" style="vertical-align: middle; horiz-align: center; height: 90px;"/>
         <br />
-        @Model.Album.Navn
+        <span style="width: 100px;">@(Model.Album.Navn.Length > 27 ? Model.Album.Navn.Substring(0, 24) + ".." : Model.Album.Navn)</span>
     </a>
 
 </div>

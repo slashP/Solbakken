@@ -1,60 +1,18 @@
 ﻿@using Solbakken.Models
-@model List<Bilde>
+@model dynamic
 @{
     ViewBag.Title = "Home Page";
-    var counter = 0;
     var albums = (List<Album>) ViewBag.Album;
     var thumbnails = (List<Bilde>) ViewBag.Thumbnails;
 }
-<link rel="stylesheet" type="text/css" href="~/Content/wow/style.css"/>
-
-<div id="wowslider-container1">
-    <div class="ws_images">
-        <ul>
-            @foreach(var bilde in Model)
-            {
-                <li><img src="/Home/GetImage?id=@(bilde.Id)" alt="@bilde.Beskrivelse" title="@bilde.Beskrivelse" id="wows@(counter++)"/></li>
-            }
-        </ul>
-    </div>
-@*
-    <div class="ws_bullets">
-        <div>
-            @{var thumbCounter = 0;}
-            @foreach(var bilde in Model)
-            {
-                <a href="#" title="@bilde.Beskrivelse"><img style="height: 100px;" src="/Home/GetThumbnail/?id=@bilde.Id" alt="@bilde.Beskrivelse"/>@(thumbCounter++)</a>
-            }
-        </div>
-    </div>*@
-</div>
-
-
 <div class="page-header">
     <div class="span3">
     </div>
-    <h2>Velg album</h2>
+    <h2>Se bilder fra album</h2>
 </div>
 <div class="row" style="margin-left: auto; margin-right: auto; text-align: center;">
-    @foreach (var album in albums)
+    @foreach (var bilde in albums.Select(album => thumbnails.FirstOrDefault(x => x.AlbumId == album.Id)).Where(bilde => bilde != null))
     {
-        var bilde = thumbnails.FirstOrDefault(x => x.AlbumId == album.Id);
-        if (bilde == null)
-        {
-            continue;
-        }
         @Html.Partial("_AlbumCover", bilde)
     }
 </div>
-
-<script src="~/Scripts/wow/wowslider.js"></script>
-<script src="~/Scripts/wow/script.js"></script>
-
-<script>
-    function test() {
-        var asdf = '<li style="position: relative; font-size: 0px; float: left;"><img id="wows1" title="frosk" alt="frosk" src="/Home/GetImage?id=21" style="position: static; visibility: visible;"></li>';
-        $(".ws_images").first().find('ul').append(asdf);
-        jQuery("#wowslider-container1").wowSlider({ effect: "basic", prev: "", next: "", duration: 7 * 100, delay: 15 * 100, outWidth: 640, outHeight: 480, width: 640, height: 480, autoPlay: false, stopOnHover: false, loop: false, bullets: true, caption: true, controls: true, logo: "engine1/loading.gif", images: 0 });
-        
-    }
-</script>

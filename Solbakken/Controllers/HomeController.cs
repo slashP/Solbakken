@@ -23,10 +23,15 @@ namespace Solbakken.Controllers
             ViewBag.Album = albumer;
             var thumbnails = albumer.Select(album => _db.Bilder.FirstOrDefault(x => x.AlbumId == album.Id)).Where(pic => pic != null).ToList();
             ViewBag.Thumbnails = thumbnails;
-            if(albumId == null)
-            {
-                return View(_db.Bilder.Take(10).ToList());
-            }
+            return View();
+        }
+
+        public ActionResult Album(int albumId)
+        {
+            var albumer = _db.Albums.ToList();
+            ViewBag.Album = albumer;
+            var thumbnails = albumer.Select(album => _db.Bilder.FirstOrDefault(x => x.AlbumId == album.Id)).Where(pic => pic != null).ToList();
+            ViewBag.Thumbnails = thumbnails;
             var bilder = _db.Bilder.Where(x => x.AlbumId == albumId).ToList();
             return View(bilder);
         }
