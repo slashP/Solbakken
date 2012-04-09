@@ -11,19 +11,35 @@
         <img src="/Images/orderedListOne.png" alt="1"/>
         Se på bilder
     </div>
-    <div class="span2 well">
-        <img src="/Images/orderedListTwo.png" alt="3"/>        
-        @Html.ActionLink("Registrer deg", "Register", "Account")
-    </div>
-    <div class="span2 well">
-        <img src="/Images/orderedListThree.png" alt="2"/>        
-        @Html.ActionLink("Lag et album", "Create", "Album")
-    </div>
+    @if(!Request.IsAuthenticated)
+    {
+        <div class="span2 well">
+            <img src="/Images/orderedListTwo.png" alt="3"/>        
+            @Html.ActionLink("Registrer deg", "Register", "Account")
+        </div>
+        <div class="span2 well">
+            <img src="/Images/orderedListThree.png" alt="2"/>        
+            @Html.ActionLink("Lag et album", "Create", "Album")
+        </div>
     
-    <div class="span2 well">
-        <img src="/Images/orderedListFour.png" alt="3"/>        
-        @Html.ActionLink("Last opp bilder", "LastOpp", "Bilde")
-    </div>
+        <div class="span2 well">
+            <img src="/Images/orderedListFour.png" alt="3"/>        
+            @Html.ActionLink("Last opp bilder", "LastOpp", "Bilde")
+        </div>
+    }
+    else
+    {
+        <div class="span2 well">
+            <img src="/Images/orderedListTwo.png" alt="2"/>        
+            @Html.ActionLink("Lag et album", "Create", "Album")
+        </div>
+    
+        <div class="span2 well">
+            <img src="/Images/orderedListThree.png" alt="3"/>        
+            @Html.ActionLink("Last opp bilder", "LastOpp", "Bilde")
+        </div>
+    }
+    
 </div>
 
 <div class="page-header">
