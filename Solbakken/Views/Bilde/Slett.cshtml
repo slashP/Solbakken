@@ -8,8 +8,9 @@
 
 <table>
     <tr>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.Album.Navn)
+            Album
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Filnavn)
@@ -20,6 +21,9 @@
 @foreach (var bilde in Model)
 {
     <tr>
+        <td>
+            <img src="/Home/GetThumbnail?id=@(bilde.Id)" alt="@bilde.Beskrivelse" title="@bilde.Beskrivelse" style="vertical-align: middle; horiz-align: center; height: 50px;"/>
+        </td>
         <td>
             @Html.DisplayFor(modelItem => bilde.Album.Navn)
         </td>
