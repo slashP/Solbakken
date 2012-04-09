@@ -5,6 +5,27 @@
     var albums = (List<Album>) ViewBag.Album;
     var thumbnails = (List<Bilde>) ViewBag.Thumbnails;
 }
+
+<div class="row" style="text-align: center; margin-left: auto; margin-right: auto; display: inline-block;">
+    <div class="span2 well">
+        <img src="/Images/orderedListOne.png" alt="1"/>
+        Se på bilder
+    </div>
+    <div class="span2 well">
+        <img src="/Images/orderedListTwo.png" alt="3"/>        
+        @Html.ActionLink("Registrer deg", "Register", "Account")
+    </div>
+    <div class="span2 well">
+        <img src="/Images/orderedListThree.png" alt="2"/>        
+        @Html.ActionLink("Lag et album", "Create", "Album");
+    </div>
+    
+    <div class="span2 well">
+        <img src="/Images/orderedListFour.png" alt="3"/>        
+        @Html.ActionLink("Last opp bilder", "LastOpp", "Bilde")
+    </div>
+</div>
+
 <div class="page-header">
     <div class="span3">
     </div>

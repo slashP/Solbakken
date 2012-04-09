@@ -654,3 +654,16 @@ ul#social li {
 .albumcover {
     width: 200px;
 }
+
+
+.well.one {
+    background: url("../Images/orderedListOne.png") no-repeat;
+}
+
+.well.two {
+    background: url("../Images/orderedListTwo.png") no-repeat;
+}
+
+.well.three {
+    background: url("../Images/orderedListThree.png") no-repeat;
+}

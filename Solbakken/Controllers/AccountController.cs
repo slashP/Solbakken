@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using CodeFirstMembershipSharp;
 using Solbakken.Models;
+using Solbakken.Util;
 
 namespace Solbakken.Controllers
 {
@@ -21,30 +22,7 @@ namespace Solbakken.Controllers
         [AllowAnonymous]
         public ActionResult LogOn()
         {
-            return ContextDependentView();
-        }
-
-        //
-        // POST: /Account/JsonLogOn
-        [AllowAnonymous]
-        [HttpPost]
-        public JsonResult JsonLogOn(Models.LoginModel model, string returnUrl)
-        {
-            if (ModelState.IsValid)
-            {
-                if (_membershipProvider.ValidateUser(model.UserName, model.Password))
-                {
-                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                    return Json(new { success = true, redirect = returnUrl });
-                }
-                else
-                {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
-                }
-            }
-
-            // If we got this far, something failed
-            return Json(new { errors = GetErrorsFromModelState() });
+            return View();
         }
 
         //
@@ -52,26 +30,21 @@ namespace Solbakken.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult LogOn(LoginModel model, string returnUrl)
+        public ActionResult LogOn(string ReturnUrl, LoginModel model)
         {
             if (ModelState.IsValid)
             {
+                var req = Request;
                 if (_membershipProvider.ValidateUser(model.UserName, model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                    if (Url.IsLocalUrl(returnUrl))
+                    if (Url.IsLocalUrl(ReturnUrl))
                     {
-                        return Redirect(returnUrl);
+                        return Redirect(ReturnUrl);
                     }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    return RedirectToAction("Index", "Home");
                 }
-                else
-                {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
-                }
+                ModelState.AddModelError("", "Brukernavnet eller passordet er feil.");
             }
 
             // If we got this far, something failed, redisplay form
@@ -94,35 +67,7 @@ namespace Solbakken.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return ContextDependentView();
-        }
-
-        //
-        // POST: /Account/JsonRegister
-
-        [AllowAnonymous]
-        [HttpPost]
-        public ActionResult JsonRegister(RegisterModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                // Attempt to register the user
-                MembershipCreateStatus createStatus;
-                _membershipProvider.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
-
-                if (createStatus == MembershipCreateStatus.Success)
-                {
-                    FormsAuthentication.SetAuthCookie(model.UserName, createPersistentCookie: false);
-                    return Json(new { success = true });
-                }
-                else
-                {
-                    ModelState.AddModelError("", ErrorCodeToString(createStatus));
-                }
-            }
-
-            // If we got this far, something failed
-            return Json(new { errors = GetErrorsFromModelState() });
+            return View();
         }
 
         //
@@ -141,6 +86,7 @@ namespace Solbakken.Controllers
                 if (createStatus == MembershipCreateStatus.Success)
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, createPersistentCookie: false);
+                    MailUtil.SendRegisteredEmail(model.Email, model.UserName);
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -189,7 +135,7 @@ namespace Solbakken.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+                    ModelState.AddModelError("", "Enten er det nåværende passordet feil eller så er det nye passordet ugyldig.");
                 }
             }
 
@@ -203,21 +149,6 @@ namespace Solbakken.Controllers
         public ActionResult ChangePasswordSuccess()
         {
             return View();
-        }
-
-        private ActionResult ContextDependentView()
-        {
-            string actionName = ControllerContext.RouteData.GetRequiredString("action");
-            if (Request.QueryString["content"] != null)
-            {
-                ViewBag.FormAction = "Json" + actionName;
-                return PartialView();
-            }
-            else
-            {
-                ViewBag.FormAction = actionName;
-                return View();
-            }
         }
 
         private IEnumerable<string> GetErrorsFromModelState()
@@ -234,36 +165,54 @@ namespace Solbakken.Controllers
             switch (createStatus)
             {
                 case MembershipCreateStatus.DuplicateUserName:
-                    return "User name already exists. Please enter a different user name.";
+                    return "Brukernavnet finnes allerede. Velg et annet.";
 
                 case MembershipCreateStatus.DuplicateEmail:
-                    return "A user name for that e-mail address already exists. Please enter a different e-mail address.";
+                    return "Denne e-postadressen finnes allerede. Forsøk å logge inn eller resette passordet.";
 
                 case MembershipCreateStatus.InvalidPassword:
-                    return "The password provided is invalid. Please enter a valid password value.";
+                    return "Passordet er ikke gyldig. Forsøk å legge inn et gyldig passord.";
 
                 case MembershipCreateStatus.InvalidEmail:
-                    return "The e-mail address provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.InvalidAnswer:
-                    return "The password retrieval answer provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.InvalidQuestion:
-                    return "The password retrieval question provided is invalid. Please check the value and try again.";
+                    return "Dette er ikke en gyldig e-postadresse. Sikker på at du har skrevet rett?";
 
                 case MembershipCreateStatus.InvalidUserName:
-                    return "The user name provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.ProviderError:
-                    return "The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
-
-                case MembershipCreateStatus.UserRejected:
-                    return "The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+                    return "Brukernavnet er ugyldig. Prøv å ikke bruke avanserte tegn.";
 
                 default:
-                    return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+                    return "En ukjent feil oppsto. Hvis feilen fortsetter kan du kontakte perkristianhelland (at) gmail.com";
             }
         }
         #endregion
+
+        [AllowAnonymous]
+        public ActionResult ResetPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult ResetPassword(RegisterModel model)
+        {
+            var db = new DataContext();
+            var user = db.Users.FirstOrDefault(x => x.Email == model.Email);
+            
+            if(user != null)
+            {
+                var password = RandomPassword.Generate();
+                var membership = new CodeFirstMembershipProvider();
+                if (Request.Url != null)
+                {
+                    MailUtil.SendNewPassword(password, model.Email, Request.Url.Host + Url.Action("ChangePassword"));
+                    if(membership.ChangePasswordForce(user.Email, password))
+                    {
+                        return View("ResetSuccess", model);                        
+                    }
+                }
+            }
+            ViewBag.Fail = "Fant ikke noen bruker med den epost-adressen. Har du skrevet feil?";
+            return View();
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Web.Security;
 
 namespace CodeFirstMembershipSharp
@@ -296,6 +297,27 @@ namespace CodeFirstMembershipSharp
                 Context.SaveChanges();
                 return true;
             }
+        }
+
+        public bool ChangePasswordForce(string email, string newPassword)
+        {
+            using (var db = new DataContext())
+            {
+                var user = db.Users.FirstOrDefault(x => x.Email == email);
+                if(user != null)
+                {
+                    var newHashedPassword = Crypto.HashPassword(newPassword);
+                    if (newHashedPassword.Length > 128)
+                    {
+                        return false;
+                    }
+                    user.Password = newHashedPassword;
+                    user.LastPasswordChangedDate = DateTime.UtcNow;
+                    db.SaveChanges();
+                    return true; 
+                }
+            }
+            return false;
         }
 
         public override bool UnlockUser(string userName)

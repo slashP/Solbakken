@@ -1,26 +1,26 @@
 @model Solbakken.Models.RegisterModel
 
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Registrer deg";
 }
 
 <hgroup class="title">
     <h1>@ViewBag.Title.</h1>
-    <h2>Use the form below to create a new account.</h2>
+    <h2>Bruk skjemaet under til å registrere en ny konto.</h2>
 </hgroup>
 
 <p class="message-info">
-    Passwords are required to be a minimum of @Membership.MinRequiredPasswordLength characters in length.
+    Passordet må være minst @Membership.MinRequiredPasswordLength bokstaver lange.
 </p>
 
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 @using (Html.BeginForm((string)ViewBag.FormAction, "Account")) {
-    @Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.")
+    @Html.ValidationSummary(true, "Klarte ikke å opprette kontoen. Prøv å rette feilene.")
 
     <fieldset>
-        <legend>Registration Form</legend>
+        <legend>Registreringsskjema</legend>
         <ol>
             <li>
                 @Html.LabelFor(m => m.UserName)
@@ -43,6 +43,6 @@
                 @Html.ValidationMessageFor(m => m.ConfirmPassword)
             </li>
         </ol>
-        <input type="submit" value="Register" />
+        <input type="submit" value="Registrer deg" />
     </fieldset>
 }

@@ -1,0 +1,11 @@
+﻿@model Solbakken.Models.RegisterModel
+
+@{
+    ViewBag.Title = "Passordet har blitt resatt";
+}
+
+<h2>Passordet har blitt resatt</h2>
+<div class="span4 well">
+    Du skal ha mottatt en mail på epostadressen @Model.Email<br />
+    Logg inn @Html.ActionLink("her", "LogOn")
+</div>
