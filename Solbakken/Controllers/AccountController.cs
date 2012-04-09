@@ -122,7 +122,7 @@ namespace Solbakken.Controllers
                 try
                 {
                     MembershipUser currentUser = _membershipProvider.GetUser(User.Identity.Name, userIsOnline: true);
-                    changePasswordSucceeded = currentUser.ChangePassword(model.OldPassword, model.NewPassword);
+                    changePasswordSucceeded = _membershipProvider.ChangePassword(currentUser.UserName, model.OldPassword, model.NewPassword);
                 }
                 catch (Exception)
                 {
@@ -204,7 +204,7 @@ namespace Solbakken.Controllers
                 var membership = new CodeFirstMembershipProvider();
                 if (Request.Url != null)
                 {
-                    MailUtil.SendNewPassword(password, model.Email, Request.Url.Host + Url.Action("ChangePassword"));
+                    MailUtil.SendNewPassword(password, model.Email, Request.Url.Host + Url.Action("ChangePassword"), user.Username);
                     if(membership.ChangePasswordForce(user.Email, password))
                     {
                         return View("ResetSuccess", model);                        

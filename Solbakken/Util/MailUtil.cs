@@ -14,20 +14,22 @@ namespace Solbakken.Util
             var mail = new MailMessage {From = new MailAddress(MyEmailAddress)};
             mail.ReplyToList.Add(new MailAddress(MyEmailAddress));
             mail.To.Add(new MailAddress(emailAddress));
-            mail.Body = string.Format(@"Du er nå registrert på Solbakken og kan laste opp bilder som andre kan se.
-                          Siden finner du på http://solbakken.apphb.com. Ditt brukernavn er: {0} 
-                            \n\nIkke la bildene støve ned på datamaskinen - vis dem fram!", username);
+            mail.Body = string.Format(@"Du er nå registrert på Solbakken og kan laste opp bilder som andre kan se. Siden finner du på http://solbakken.apphb.com. 
+
+Ditt brukernavn er: {0}. 
+
+Ikke la bildene støve ned på datamaskinen - vis dem fram!", username);
             mail.Subject = "Solbakken - Gratulerer, du er nå registrert på Solbakken og kan dele bilder med familien!";
             client.SendMail(mail);
         }
 
-        public static void SendNewPassword(string password, string email, string resetLinkUrl)
+        public static void SendNewPassword(string password, string email, string resetLinkUrl, string username)
         {
             var client = new MailgunClient("app692.mailgun.org", "key-63fneqd63xpee86sxtd07u3ofsnmzm30");
             var mail = new MailMessage { From = new MailAddress(MyEmailAddress) };
             mail.ReplyToList.Add(new MailAddress(MyEmailAddress));
             mail.To.Add(new MailAddress(email));
-            mail.Body = string.Format(@"Passordet ditt har blitt resatt. Det nye passordet er {0}. Etter du har logget inn kan du endre det ved å gå hit: {1}", password, resetLinkUrl);
+            mail.Body = string.Format(@"Passordet ditt har blitt resatt. Det nye passordet er {0}. Brukernanvet er: {1}. Etter du har logget inn kan du endre det ved å gå hit: {2}",password, username ,resetLinkUrl);
             mail.Subject = "Solbakken - Ditt passord har blitt resatt.";
             client.SendMail(mail);
         }
