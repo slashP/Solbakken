@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using CodeFirstMembershipSharp;
 using Solbakken.Models;
@@ -25,7 +24,7 @@ namespace Solbakken.Controllers
         }
 
         [HttpPost]
-        public ActionResult LastOpp(HttpPostedFileBase fileBase, int? albumId, string beskrivelse)
+        public ActionResult LastOpp(int? albumId, string beskrivelse)
         {
             if(albumId == null)
             {
@@ -104,13 +103,6 @@ namespace Solbakken.Controllers
             return userid;
         }
 
-        public ActionResult Slett()
-        {
-            var userId = GetUserId();
-            var bilder = _db.Bilder.Where(x => x.LastetOppAvId == userId).ToList();
-            return View(bilder);
-        }
-
         public static byte[] ReadFully(Stream input)
         {
             var buffer = new byte[16 * 1024 * 1024];
@@ -123,6 +115,13 @@ namespace Solbakken.Controllers
                 }
                 return ms.ToArray();
             }
+        }
+
+        public ActionResult Slett()
+        {
+            var userId = GetUserId();
+            var bilder = _db.Bilder.Where(x => x.LastetOppAvId == userId).ToList();
+            return View(bilder);
         }
 
         public ActionResult SlettBekreftet(int id)

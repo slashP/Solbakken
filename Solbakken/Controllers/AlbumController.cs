@@ -10,6 +10,7 @@ using CodeFirstMembershipSharp;
 
 namespace Solbakken.Controllers
 {
+    [Authorize]
     public class AlbumController : Controller
     {
         private readonly DataContext _db = new DataContext();

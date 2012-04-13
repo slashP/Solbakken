@@ -13,7 +13,7 @@
     <RootNamespace>Solbakken</RootNamespace>
     <AssemblyName>Solbakken</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
+    <MvcBuildViews>true</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -128,6 +128,9 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="Typesafe.Mailgun">
       <HintPath>..\packages\mnailgun.0.2.1\lib\4.0\Typesafe.Mailgun.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.4.4\lib\net40\WebActivator.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -324,9 +327,9 @@
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
+	<AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
   </Target> -->
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
-    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
   </Target>
   <ProjectExtensions>
     <VisualStudio>
