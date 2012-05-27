@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
@@ -187,11 +188,49 @@ namespace Solbakken.Controllers
             }
         }
 
+        public JsonResult SlettJson()
+        {
+            var skip = GetReferredSkip();
+            var userId = GetUserId();
+            var bilder = _db.Bilder.Where(x => x.LastetOppAvId == userId).OrderBy(x => x.Id).Skip(skip).Take(50).ToList();
+            var jsonBilder = bilder.Select(bilde => new JsonUploadResponse
+                                                        {
+                                                            delete_type = "DELETE",
+                                                            delete_url = "/Bilde/SlettBekreftet/" + bilde.Id,
+                                                            name = bilde.Navn,
+                                                            size = bilde.BildeStream.Count(),
+                                                            thumbnail_url = "/Home/GetThumbnail/" + bilde.Id,
+                                                            url = "/Home/GetImage/" + bilde.Id
+                                                        });
+            return Json(jsonBilder, JsonRequestBehavior.AllowGet);
+        }
+
+        private int GetReferredSkip()
+        {
+            var skip = 0;
+            if (Request.UrlReferrer != null)
+            {
+                int.TryParse(Request.UrlReferrer.Segments.Last(), out skip);
+            }
+            return Math.Max(skip, 0);
+        }
+
+        private int GetCurrentSkip()
+        {
+            var skip = 0;
+            if(Request.Url != null)
+            {
+                int.TryParse(Request.Url.Segments.Last(), out skip);
+            }
+            return Math.Max(skip, 0);
+        }
+
         public ActionResult Slett()
         {
+            ViewBag.Skip = GetCurrentSkip();
             var userId = GetUserId();
-            var bilder = _db.Bilder.Where(x => x.LastetOppAvId == userId).ToList();
-            return View(bilder);
+            ViewBag.Count = _db.Bilder.Count(x => x.LastetOppAvId == userId);
+            return View();
         }
 
         public ActionResult SlettBekreftet(int id)
