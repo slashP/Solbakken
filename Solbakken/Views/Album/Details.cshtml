@@ -1,11 +1,8 @@
 ﻿@model Solbakken.Models.Album
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detaljer";
 }
-
-<h2>Details</h2>
-
 <fieldset>
     <legend>Album</legend>
 
@@ -24,6 +21,6 @@
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Endre", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Tilbake til liste", "Index")
 </p>

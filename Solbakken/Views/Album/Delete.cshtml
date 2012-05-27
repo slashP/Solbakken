@@ -1,12 +1,12 @@
 ﻿@model Solbakken.Models.Album
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Slett album";
 }
 
 <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Er du sikker på at du vil slette albumet? Alle bildene i albumet vil også bli slettet og kan ikke gjenopprettes. Det er @Model.Bilder.Count bilder i albumet</h3>
 <fieldset>
     <legend>Album</legend>
 
@@ -26,7 +26,7 @@
 </fieldset>
 @using (Html.BeginForm()) {
     <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        <input type="submit" value="Slett" /> |
+        @Html.ActionLink("Tilbake  til listen", "Index")
     </p>
 }

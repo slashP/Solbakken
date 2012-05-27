@@ -20,7 +20,8 @@ namespace Solbakken.Controllers
 
         public ActionResult Index()
         {
-            return View(_db.Albums.ToList());
+            var user = _db.Users.FirstOrDefault(x => x.Username == User.Identity.Name);
+            return View(_db.Albums.Where(x => x.OpprettetAv.UserId == user.UserId).ToList());
         }
 
         //

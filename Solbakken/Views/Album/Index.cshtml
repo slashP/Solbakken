@@ -3,12 +3,10 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Opprett nytt album", "Create")
 </p>
+<h3>Dine album</h3>
 <table>
     <tr>
         <th>
@@ -29,9 +27,9 @@
             @Html.DisplayFor(modelItem => item.Opprettet)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Endre", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detaljer", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Slett", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

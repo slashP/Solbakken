@@ -1,10 +1,8 @@
 ﻿@model Solbakken.Models.Album
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Endre";
 }
-
-<h2>Edit</h2>
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
@@ -25,20 +23,12 @@
             @Html.ValidationMessageFor(model => model.Navn)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Opprettet)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Opprettet)
-            @Html.ValidationMessageFor(model => model.Opprettet)
-        </div>
-
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Lagre" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Tilbake til liste", "Index")
 </div>
