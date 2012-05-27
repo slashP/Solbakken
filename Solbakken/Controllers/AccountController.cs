@@ -10,11 +10,9 @@ using Solbakken.Util;
 
 namespace Solbakken.Controllers
 {
-
     [Authorize]
     public class AccountController : Controller
     {
-
         private readonly CodeFirstMembershipProvider _membershipProvider = new CodeFirstMembershipProvider();
         //
         // GET: /Account/LogOn

@@ -46,7 +46,24 @@ namespace Solbakken
             RegisterRoutes(RouteTable.Routes);
 
             BundleTable.Bundles.RegisterTemplateBundles();
+            RegisterBundles();
             //Database.SetInitializer(new DataContextInitializer());
+        }
+
+        private void RegisterBundles()
+        {
+            var bundle = new Bundle("~/Scripts/cors/js", new JsMinify());
+            bundle.AddDirectory("~/Scripts/cors", "*.js", true);
+            BundleTable.Bundles.Add(bundle);
+            bundle = new Bundle("~/Scripts/wow/js", new JsMinify());
+            bundle.AddDirectory("~/Scripts/wow", "*.js", true);
+            BundleTable.Bundles.Add(bundle);
+            bundle = new Bundle("~/Content/wow/css", new CssMinify());
+            bundle.AddDirectory("~/Content/wow", "*.css", true);
+            BundleTable.Bundles.Add(bundle);
+            bundle = new Bundle("~/Content/fileupload/css", new CssMinify());
+            bundle.AddDirectory("~/Content/fileupload", "*.css", true);
+            BundleTable.Bundles.Add(bundle);
         }
     }
 }

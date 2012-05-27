@@ -7,28 +7,13 @@
 }
 
 <div class="row" style="text-align: center; margin-left: auto; margin-right: auto; display: inline-block;">
-    <div class="span2 well">
-        <img src="/Images/orderedListOne.png" alt="1"/>
-        Se på bilder
-    </div>
-    @if(!Request.IsAuthenticated)
+    
+    @if (!Request.IsAuthenticated)
     {
         <div class="span2 well">
-            <img src="/Images/orderedListTwo.png" alt="3"/>        
+            <img src="/Images/orderedListOne.png" alt="3"/>        
             @Html.ActionLink("Registrer deg", "Register", "Account")
         </div>
-        <div class="span2 well">
-            <img src="/Images/orderedListThree.png" alt="2"/>        
-            @Html.ActionLink("Lag et album", "Create", "Album")
-        </div>
-    
-        <div class="span2 well">
-            <img src="/Images/orderedListFour.png" alt="3"/>        
-            @Html.ActionLink("Last opp bilder", "LastOpp", "Bilde")
-        </div>
-    }
-    else
-    {
         <div class="span2 well">
             <img src="/Images/orderedListTwo.png" alt="2"/>        
             @Html.ActionLink("Lag et album", "Create", "Album")
@@ -38,18 +23,42 @@
             <img src="/Images/orderedListThree.png" alt="3"/>        
             @Html.ActionLink("Last opp bilder", "LastOpp", "Bilde")
         </div>
+        <div class="span2 well">
+            <img src="/Images/orderedListFour.png" alt="1"/>
+            Se på bilder
+        </div>
+    }
+    else
+    {
+        <div class="span2 well">
+            <img src="/Images/orderedListOne.png" alt="2"/>        
+            @Html.ActionLink("Lag et album", "Create", "Album")
+        </div>
+
+        <div class="span2 well">
+            <img src="/Images/orderedListTwo.png" alt="3"/>        
+            @Html.ActionLink("Last opp bilder", "LastOpp", "Bilde")
+        </div>
+        <div class="span2 well">
+            <img src="/Images/orderedListThree.png" alt="1"/>
+            Se på bilder
+        </div>
     }
     
+    
 </div>
-
-<div class="page-header">
-    <div class="span3">
+@if(Request.IsAuthenticated)
+{
+    <div class="page-header">
+            <div class="span3">
+            </div>
+            <h2>Se bilder fra album</h2>
+        </div>
+    <div class="row" style="margin-left: auto; margin-right: auto; text-align: center;">
+        @foreach (var bilde in albums.Select(album => thumbnails.FirstOrDefault(x => x.AlbumId == album.Id)).Where(bilde => bilde != null))
+        {
+            @Html.Partial("_AlbumCover", bilde)
+        }
     </div>
-    <h2>Se bilder fra album</h2>
-</div>
-<div class="row" style="margin-left: auto; margin-right: auto; text-align: center;">
-    @foreach (var bilde in albums.Select(album => thumbnails.FirstOrDefault(x => x.AlbumId == album.Id)).Where(bilde => bilde != null))
-    {
-        @Html.Partial("_AlbumCover", bilde)
-    }
-</div>
+}
+

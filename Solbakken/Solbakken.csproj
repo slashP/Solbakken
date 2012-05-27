@@ -46,8 +46,8 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -129,8 +129,9 @@
     <Reference Include="Typesafe.Mailgun">
       <HintPath>..\packages\mnailgun.0.2.1\lib\4.0\Typesafe.Mailgun.dll</HintPath>
     </Reference>
-    <Reference Include="WebActivator">
-      <HintPath>..\packages\WebActivator.1.4.4\lib\net40\WebActivator.dll</HintPath>
+    <Reference Include="WebActivator, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebActivator.1.5\lib\net40\WebActivator.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -153,15 +154,17 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Bilde.cs" />
+    <Compile Include="Models\JsonUploadResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\ImageUtil.cs" />
     <Compile Include="Util\MailUtil.cs" />
     <Compile Include="Util\RandomPassword.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-responsive.css" />
-    <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\fileupload\bootstrap-responsive.css" />
+    <Content Include="Content\fileupload\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\fileupload\bootstrap.min.css" />
     <Content Include="Content\images\chrysanthemum.jpg" />
     <Content Include="Content\images\desert.jpg" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
@@ -172,7 +175,9 @@
     <Content Include="Content\images\lighthouse.jpg" />
     <Content Include="Content\images\penguins.jpg" />
     <Content Include="Content\images\tulips.jpg" />
-    <Content Include="Content\jquery.ui.progressbar.css" />
+    <Content Include="Content\img\loading.gif" />
+    <Content Include="Content\img\progressbar.gif" />
+    <Content Include="Content\fileupload\jquery.ui.progressbar.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -219,11 +224,17 @@
     <Content Include="Scripts\blockui.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\cors\jquery.postmessage-transport.js" />
+    <Content Include="Scripts\cors\jquery.xdr-transport.js" />
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.18.js" />
     <Content Include="Scripts\jquery-ui-1.8.18.min.js" />
+    <Content Include="Scripts\fileupload\jquery.fileupload-ip.js" />
+    <Content Include="Scripts\fileupload\jquery.fileupload-ui.js" />
+    <Content Include="Scripts\fileupload\jquery.fileupload.js" />
+    <Content Include="Scripts\fileupload\jquery.iframe-transport.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
@@ -231,7 +242,10 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\fileupload\locale.js" />
+    <Content Include="Scripts\fileupload\main.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\vendor\jquery.ui.widget.js" />
     <Content Include="Scripts\wow\script.js" />
     <Content Include="Scripts\wow\wowslider.js" />
     <Content Include="Scripts\wow\jquery.js" />
@@ -319,6 +333,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\ResetSuccess.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Bilde\Upload.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

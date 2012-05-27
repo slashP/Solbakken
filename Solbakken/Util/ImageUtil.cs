@@ -46,6 +46,26 @@ namespace Solbakken.Util
             return b.ToStream(imageFormat);
         }
 
+        public static Image Resize(this Image image, int width, int height)
+        {
+            var sourceWidth = image.Width;
+            var sourceHeight = image.Height;
+            var widthRatio = (width / (float)sourceWidth);
+            var heightRatio = (height / (float)sourceHeight);
+            var resizeRatio = heightRatio < widthRatio ? heightRatio : widthRatio;
+            var destWidth = (int)(sourceWidth * resizeRatio);
+            var destHeight = (int)(sourceHeight * resizeRatio);
+            var resizedImage = new Bitmap(destWidth, destHeight);
+            using (var g = Graphics.FromImage(resizedImage))
+            {
+                g.SmoothingMode = SmoothingMode.HighQuality;
+                g.CompositingQuality = CompositingQuality.HighQuality;
+                g.InterpolationMode = InterpolationMode.High;
+                g.DrawImage(image, new Rectangle(0, 0, resizedImage.Width, resizedImage.Height));
+                return resizedImage;
+            }
+        }
+
         public static string[] AllowedImageTypes = new[] { "image/jpeg", "image/png", "image/gif", "image/pjpeg" };
 
         public static ImageFormat GetImageFormatFromFileExtension(string fileExtension)
