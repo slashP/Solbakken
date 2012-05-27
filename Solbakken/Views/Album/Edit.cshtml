@@ -23,6 +23,14 @@
             @Html.ValidationMessageFor(model => model.Navn)
         </div>
 
+        <div class="editor-label">
+            @Html.HiddenFor(model => model.Opprettet)
+        </div>
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.Opprettet)
+            @Html.ValidationMessageFor(model => model.Opprettet)
+        </div>
+
         <p>
             <input type="submit" value="Lagre" />
         </p>
