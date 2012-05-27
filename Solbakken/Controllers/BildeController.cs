@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
@@ -43,19 +42,22 @@ namespace Solbakken.Controllers
                     var thumbnail = im.Resize(100, 75);
                     var album = _db.Albums.Find(albumId) ?? _db.Albums.FirstOrDefault();
                     var user = _db.Users.FirstOrDefault(x => x.Username == User.Identity.Name);
-                    var bilde = new Bilde
+                    if (album != null)
                     {
-                        AlbumId = album.Id,
-                        Beskrivelse = beskrivelse,
-                        Format = imageFormat.ToString(),
-                        BildeStream = ReadFully(newImage.ToStream(imageFormat)),
-                        Filnavn = image.FileName,
-                        LastetOppAvId = user.UserId,
-                        Navn = image.FileName,
-                        Thumbnail = ReadFully(thumbnail.ToStream(imageFormat))
-                    };
-                    imagesUploadedCounter++;
-                    _db.Bilder.Add(bilde);
+                        var bilde = new Bilde
+                                        {
+                                            AlbumId = album.Id,
+                                            Beskrivelse = beskrivelse,
+                                            Format = imageFormat.ToString(),
+                                            BildeStream = ReadFully(newImage.ToStream(imageFormat)),
+                                            Filnavn = image.FileName,
+                                            LastetOppAvId = user.UserId,
+                                            Navn = image.FileName,
+                                            Thumbnail = ReadFully(thumbnail.ToStream(imageFormat))
+                                        };
+                        imagesUploadedCounter++;
+                        _db.Bilder.Add(bilde);
+                    }
                     _db.SaveChanges();
                 }
             }
@@ -76,18 +78,21 @@ namespace Solbakken.Controllers
                 var thumbnail = im.Resize(80, 60);
                 var album = _db.Albums.Find(albumId) ?? _db.Albums.FirstOrDefault();
                 var user = _db.Users.FirstOrDefault(x => x.Username == User.Identity.Name);
-                var bilde = new Bilde
+                if (album != null)
                 {
-                    AlbumId = album.Id,
-                    Beskrivelse = beskrivelse,
-                    Format = imageFormat.ToString(),
-                    BildeStream = ReadFully(newImage.ToStream(imageFormat)),
-                    Filnavn = filename,
-                    LastetOppAvId = user.UserId,
-                    Navn = filename,
-                    Thumbnail = ReadFully(thumbnail.ToStream(imageFormat))
-                };
-                _db.Bilder.Add(bilde);
+                    var bilde = new Bilde
+                                    {
+                                        AlbumId = album.Id,
+                                        Beskrivelse = beskrivelse,
+                                        Format = imageFormat.ToString(),
+                                        BildeStream = ReadFully(newImage.ToStream(imageFormat)),
+                                        Filnavn = filename,
+                                        LastetOppAvId = user.UserId,
+                                        Navn = filename,
+                                        Thumbnail = ReadFully(thumbnail.ToStream(imageFormat))
+                                    };
+                    _db.Bilder.Add(bilde);
+                }
                 _db.SaveChanges();
             }
             catch (Exception)
@@ -129,7 +134,6 @@ namespace Solbakken.Controllers
                     var imageFormat = ImageUtil.GetImageFormatFromFileExtension(extension);
                     var newImage = im.Resize(800, 600);
                     var thumbnail = im.Resize(80, 60);
-                    var album = _db.Albums.Find(14) ?? _db.Albums.FirstOrDefault();
                     var user = _db.Users.FirstOrDefault(x => x.Username == User.Identity.Name);
                     bilde = new Bilde
                                 {
