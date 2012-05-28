@@ -61,7 +61,7 @@ namespace Solbakken.Models
         public string ConfirmPassword { get; set; }
 
         [Display(Name = "Hemmelig kodeord")]
-        [RegularExpression("^Sandsøya", ErrorMessage = "Hemmlig kodeord ikke riktig.")]
+        [RegularExpression("^Helland", ErrorMessage = "Hemmlig kodeord ikke riktig.")]
         public string HemmeligOrd { get; set; }
     }
 }
