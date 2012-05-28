@@ -42,6 +42,11 @@
                 @Html.PasswordFor(m => m.ConfirmPassword)
                 @Html.ValidationMessageFor(m => m.ConfirmPassword)
             </li>
+            <li>
+                @Html.LabelFor(m => m.HemmeligOrd)
+                @Html.TextBoxFor(m => m.HemmeligOrd)
+                @Html.ValidationMessageFor(m => m.HemmeligOrd)
+            </li>
         </ol>
         <input type="submit" value="Registrer deg" />
     </fieldset>

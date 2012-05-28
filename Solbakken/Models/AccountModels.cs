@@ -59,5 +59,9 @@ namespace Solbakken.Models
         [Display(Name = "Bekreft passord")]
         [Compare("Password", ErrorMessage = "Passord og bekreftet passord stemmer ikke overens.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Hemmelig kodeord")]
+        [RegularExpression("^Sandsøya", ErrorMessage = "Hemmlig kodeord ikke riktig.")]
+        public string HemmeligOrd { get; set; }
     }
 }
