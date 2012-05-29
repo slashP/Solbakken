@@ -38,7 +38,6 @@ C:\Users\perkrihe\Documents\Visual Studio 2010\Projects\Solbakken\Solbakken\bin\
 C:\Users\perkrihe\Documents\Visual Studio 2010\Projects\Solbakken\Solbakken\bin\Ionic.Zip.xml
 C:\Users\perkrihe\Documents\Visual Studio 2010\Projects\Solbakken\Solbakken\bin\Newtonsoft.Json.dll
 C:\Users\perkrihe\Documents\Visual Studio 2010\Projects\Solbakken\Solbakken\bin\Typesafe.Mailgun.dll
-C:\Users\perkrihe\Documents\Visual Studio 2010\Projects\Solbakken\Solbakken\bin\Newtonsoft.Json.pdb
 C:\Users\perkrihe\Documents\Visual Studio 2010\Projects\Solbakken\Solbakken\bin\Newtonsoft.Json.xml
 C:\Users\perkrihe\Documents\Visual Studio 2010\Projects\Solbakken\Solbakken\bin\Typesafe.Mailgun.xml
 C:\Users\perkrihe\Documents\Visual Studio 2010\Projects\Solbakken\Solbakken\bin\WebActivator.dll
