@@ -41,3 +41,46 @@ C:\Users\perkrihe\Documents\Visual Studio 2010\Projects\Solbakken\Solbakken\bin\
 C:\Users\perkrihe\Documents\Visual Studio 2010\Projects\Solbakken\Solbakken\bin\Newtonsoft.Json.xml
 C:\Users\perkrihe\Documents\Visual Studio 2010\Projects\Solbakken\Solbakken\bin\Typesafe.Mailgun.xml
 C:\Users\perkrihe\Documents\Visual Studio 2010\Projects\Solbakken\Solbakken\bin\WebActivator.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\Solbakken.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\Solbakken.pdb
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\EntityFramework.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\Ionic.Zip.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\Newtonsoft.Json.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Json.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Net.Http.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Net.Http.Formatting.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Net.Http.WebRequest.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.Helpers.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.Http.Common.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.Http.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.Http.WebHost.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.Mvc.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.Optimization.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.Providers.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.Razor.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.WebPages.Deployment.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.WebPages.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.WebPages.Razor.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\Typesafe.Mailgun.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\WebActivator.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\EntityFramework.xml
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\Ionic.Zip.xml
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\Newtonsoft.Json.xml
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Json.xml
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Net.Http.xml
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Net.Http.Formatting.xml
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Net.Http.WebRequest.xml
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.Helpers.xml
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.Http.xml
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.Http.Common.xml
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.Http.WebHost.xml
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.Mvc.xml
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.Razor.xml
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.WebPages.xml
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.WebPages.Deployment.xml
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\System.Web.WebPages.Razor.xml
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\bin\Typesafe.Mailgun.xml
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\obj\Debug\Solbakken.csprojResolveAssemblyReference.cache
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\obj\Debug\Solbakken.dll
+C:\Users\PerHel\Documents\GitHub\Solbakken\Solbakken\obj\Debug\Solbakken.pdb

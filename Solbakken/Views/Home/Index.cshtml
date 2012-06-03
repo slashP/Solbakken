@@ -5,9 +5,7 @@
     var albums = (List<Album>) ViewBag.Album;
     var thumbnails = (List<Bilde>) ViewBag.Thumbnails;
 }
-
 <div class="row" style="text-align: center; margin-left: auto; margin-right: auto; display: inline-block;">
-    
     @if (!Request.IsAuthenticated)
     {
         <div class="span2 well">
